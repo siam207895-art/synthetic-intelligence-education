@@ -19,7 +19,25 @@ import {
 
 export default function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [prompt, setPrompt] = useState("");
+  const handleSend = (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    if (!prompt.trim()) return;
+
+    const userMessage = { role: "user", content: prompt };
+    const updatedMessages = [...messages, userMessage];
+    setMessages(updatedMessages);
+    setPrompt("");
+
+    setTimeout(() => {
+      const aiResponse = { 
+        role: "assistant", 
+        content: `Synthetic Intelligence (SI) Core: I have processed your input regarding "${userMessage.content}". All systems are fully operational.` 
+      };
+      setMessages([...updatedMessages, aiResponse]);
+    }, 1000);
+  };
+
+const [prompt, setPrompt] = useState("");
   const [messages, setMessages] = useState<{ role: string; content: string }[]>([]);
   const [activeModal, setActiveModal] = useState<string | null>(null);
   
