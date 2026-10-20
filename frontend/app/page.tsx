@@ -258,7 +258,6 @@ export default function HomePage() {
       )}
     </main>
   );
-}
 
 // Simulation states
   const [quantumFreq, setQuantumFreq] = useState(75);
